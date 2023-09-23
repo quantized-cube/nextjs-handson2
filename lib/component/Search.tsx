@@ -44,25 +44,35 @@ export const Search: FunctionComponent<{
         <button
           className="bg-gray-700 py-2 px-4"
           onClick={async () => {
-            setSearching(true)
-            const response = await fetch(
-              `http://localhost:3000/api/search`,
-              {
-                method: 'POST',
-                body: JSON.stringify({
-                  query,
-                }),
-                headers: {
-                  'Content-Type': 'application/json',
+            try {
+              setSearching(true)
+              const response = await fetch(
+                `http://localhost:3000/api/search`,
+                {
+                  method: 'POST',
+                  body: JSON.stringify({
+                    query,
+                  }),
+                  headers: {
+                    'Content-Type': 'application/json',
+                  }
                 }
+              )
+              if (!response.ok) {
+                throw response
               }
-            )
-            const json: PhotoSearchResponse = await response.json()
-            // console.log(json)
-            startTransition(() => {
-              setSearchedPhotos(json.results)
-            })
-            setSearching(false)
+              const json: PhotoSearchResponse = await response.json()
+              // console.log(json)
+              startTransition(() => {
+                setSearchedPhotos(json.results)
+              })
+            } catch (error) {
+              console.error(error)
+              alert('検索中にエラーが発生しました')
+              setSearchedPhotos([])
+            } finally {
+              setSearching(false)
+            }
           }}
         >
           <VscSearch />
