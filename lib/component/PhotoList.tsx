@@ -2,10 +2,7 @@
 
 import { Photo } from '@/lib/type'
 import Image from 'next/image'
-import {
-  FunctionComponent,
-} from 'react'
-import { VscSearch } from 'react-icons/vsc'
+import { FunctionComponent } from 'react'
 
 export const PhotoList: FunctionComponent<{
   photos: Photo[]
@@ -26,14 +23,12 @@ export const PhotoList: FunctionComponent<{
                     src={photo.urls.small}
                     width={400}
                     height={
-                      photo.height *
-                      (400 / photo.width)
+                      photo.height * (400 / photo.width)
                     }
                     alt={photo.description}
                     onClick={() => {
                       window.open(
-                        photo.links
-                          .html,
+                        photo.links.html,
                         '_blank'
                       );
                     }}

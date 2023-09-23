@@ -62,7 +62,6 @@ export const Search: FunctionComponent<{
                 throw response
               }
               const json: PhotoSearchResponse = await response.json()
-              // console.log(json)
               startTransition(() => {
                 setSearchedPhotos(json.results)
               })

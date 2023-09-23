@@ -1,8 +1,6 @@
 'use client'
 
-import {
-  FunctionComponent,
-} from 'react'
+import { FunctionComponent } from 'react'
 import { VscLoading } from 'react-icons/vsc'
 
 export const Loading: FunctionComponent = () => {
