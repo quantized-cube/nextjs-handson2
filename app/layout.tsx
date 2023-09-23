@@ -1,6 +1,7 @@
 import { Suspense } from 'react'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import { Loading } from '@/lib/component/Loading'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -40,7 +41,7 @@ export default function RootLayout({
         <main
           className="pt-20 pb-8 bg-gray-950 min-h-screen"
         >
-          <Suspense fallback={'loading...'}>
+          <Suspense fallback={<Loading />}>
             {children}
           </Suspense>
         </main>
